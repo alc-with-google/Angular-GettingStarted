@@ -59,7 +59,7 @@
             </td>
             <td>{{product.productName}}</td>
             <!-- using pipe here -->
-            <td>{{product.productCode | lowercase}}</td>
+            <td>{{product.productCode | lowercase | convertToSpaces: "-"}}</td>
             <td>{{product.releaseDate}}</td>
             <!-- using pipe here -->
             <td>{{product.price | currency: "NGN":"symbol": "1.2-2"}}</td>
