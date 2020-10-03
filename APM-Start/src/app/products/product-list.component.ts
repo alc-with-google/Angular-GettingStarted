@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { IProduct} from "../product"
 
 @Component ({
   selector: 'pm-products', // this means the component can be used a directive, <pm-products></pm-products> providing access to the html
-  templateUrl: './product-list.component.html'
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent {
   // interpolation (one-way binding) is a binding technique
@@ -16,7 +18,7 @@ export class ProductListComponent {
   imageMargin: number = 2;
   showImage: Boolean = false;
   listFilter: string = "cart";
-  products: any[] = [
+  products: IProduct[] = [
     {
       "productId": 1,
       "productName": "Leaf Rake",
