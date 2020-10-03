@@ -12,6 +12,8 @@ export class ProductListComponent {
   // Or, <h1 innertText={{pageTitle}}></h1>, {{'Title: ' + pageTitle}}
   // used with class methods as well: {{'Title: ' + getTitle()}}
   pageTitle: string = 'The Product List';
+  imageWidth: number = 50;
+  imageMargin: number = 2;
   products: any[] = [
     {
       "productId": 1,
