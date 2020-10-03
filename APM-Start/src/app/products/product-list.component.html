@@ -23,8 +23,13 @@
         <thead>
           <tr>
             <th>
-              <button class='btn btn-primary'>
-                Show Image
+              <!--
+                Here Event Binding is implemented.
+                the click event on the browser triggers the toggle function in the component class
+              -->
+              <button class='btn btn-primary' (click)="toggleImage()">
+                <!-- interpolation used in a statement-  ternary statement -->
+                {{showImage ? "Hide " : "Show "}} Image
               </button>
             </th>
             <th>Product</th>
@@ -45,7 +50,9 @@
               Here, info/data is binded to the src attribute and alt attribute
             -->
             <td>
-              <img [src]="product.imageUrl" [alt]="product.productName"
+              <!-- Here ngIf valus changes based the return value of toggle function in the component class
+              which isin turn triggered by the click event in the browser -->
+              <img *ngIf="showImage" [src]="product.imageUrl" [alt]="product.productName"
               [style.width.px]="imageWidth" [style.margin.px]="imageMargin">
             </td>
             <td>{{product.productName}}</td>
