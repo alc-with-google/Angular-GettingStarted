@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IProduct} from "../product"
 
 @Component ({
@@ -6,7 +6,12 @@ import { IProduct} from "../product"
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
+// OnInit is an Interface - a lifecyle interface
+// in the same family as onChanges and OnDestroy
+// OnInit perform component initialization, retrieve data
+// On changes: perform action after change to input ppt
+// onDestroy perform cleanup
+export class ProductListComponent implements OnInit{
   // interpolation (one-way binding) is a binding technique
   // it's about communication between class and template
   // class to template
@@ -43,5 +48,10 @@ export class ProductListComponent {
 
   toggleImage(): void {
     this.showImage = !this.showImage;
+  }
+
+  // a method that implements the onInit Lifecycle Interface
+  ngOnInit(){
+    console.log('Implementing ngOnInit')
   }
 }
