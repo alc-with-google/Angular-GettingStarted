@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from "../product"
+import { IProduct } from "../product";
+import { ProductService } from "./product.service"
 
 @Component({
   selector: 'pm-products', // this means the component can be used a directive, <pm-products></pm-products> providing access to the html
@@ -40,33 +41,10 @@ export class ProductListComponent implements OnInit {
 
   // declaring the filtered array so that the getter and setter and filter
   filteredProduct: IProduct[];
-  products: IProduct[] = [
-    {
-      "productId": 1,
-      "productName": "Leaf Rake",
-      "productCode": "GDN-0011",
-      "releaseDate": "March 19, 2019",
-      "description": "Leaf rake with 48-inch wooden handle.",
-      "price": 19.95,
-      "starRating": 3.2,
-      "imageUrl": "assets/images/leaf_rake.png"
-    },
-    {
-      "productId": 2,
-      "productName": "Garden Cart",
-      "productCode": "GDN-0023",
-      "releaseDate": "March 18, 2019",
-      "description": "15 gallon capacity rolling garden cart",
-      "price": 32.99,
-      "starRating": 4.2,
-      "imageUrl": "assets/images/garden_cart.png"
-    }
-  ];
+  products: IProduct[];
 
   // the filtered products and the listFilter is initiallised here
-  constructor() {
-    this.filteredProduct = this.products;
-    this.listFilter = 'cart';
+  constructor(private productService: ProductService) {
   }
 
   onRatingClicked(message: string): void{
@@ -86,6 +64,7 @@ export class ProductListComponent implements OnInit {
 
   // a method that implements the onInit Lifecycle Interface
   ngOnInit() {
-    console.log('Implementing ngOnInit')
+    this.products = this.productService.getProduct();
+    this.filteredProduct = this.products;
   }
 }
