@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct} from "../product"
+import { IProduct } from "../product"
 
-@Component ({
+@Component({
   selector: 'pm-products', // this means the component can be used a directive, <pm-products></pm-products> providing access to the html
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
@@ -11,7 +11,7 @@ import { IProduct} from "../product"
 // OnInit perform component initialization, retrieve data
 // On changes: perform action after change to input ppt
 // onDestroy perform cleanup
-export class ProductListComponent implements OnInit{
+export class ProductListComponent implements OnInit {
   // interpolation (one-way binding) is a binding technique
   // it's about communication between class and template
   // class to template
@@ -22,7 +22,24 @@ export class ProductListComponent implements OnInit{
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: Boolean = false;
-  listFilter: string = "cart";
+
+
+  // _listFilter: string = "cart;"
+  // this variable declaration changed to below
+  // this way, the Getter and Setter (especially the setter) can...
+  // make provision for filtering the products
+  // in the setter  function,the right function is called
+  _listFilter: string;
+  get listFilter(): string {
+    return this._listFilter;
+  }
+  set listFilter(value: string): string {
+    this._listFilter = value;
+    this.filteredProduct = this.listFilter ? this.performFilter(this.listFilter) : this.products;
+  }
+
+  // declaring the filtered array so that the getter and setter and filter
+  filteredProduct: IProduct[];
   products: IProduct[] = [
     {
       "productId": 1,
@@ -46,12 +63,25 @@ export class ProductListComponent implements OnInit{
     }
   ];
 
+  // the filtered products and the listFilter is initiallised here
+  constructor() {
+    this.filteredProduct = this.products;
+    this.listFilter = 'cart';
+  }
+
+  // function that performs the filter
+  performFilter(filterBy: string): IProduct[] {
+    filterBy = filterBy.toLocaleLowerCase();
+    return this.products.filter((product: IProduct) =>
+      product.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
+
   toggleImage(): void {
     this.showImage = !this.showImage;
   }
 
   // a method that implements the onInit Lifecycle Interface
-  ngOnInit(){
+  ngOnInit() {
     console.log('Implementing ngOnInit')
   }
 }

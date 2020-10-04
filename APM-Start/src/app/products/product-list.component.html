@@ -42,8 +42,11 @@
           </tr>
         </thead>
         <tbody>
-          <!-- Another Built in structural directives -->
-          <tr *ngFor="let product of products">
+
+          <!-- changed to filteredProduct, since it's initialised to equal products
+          And the filtering can also be applied. On reload, it re-iniatialised
+           to products as shown in the class constructor-->
+          <tr *ngFor="let product of filteredProduct">
             <!--
               Property Binding is two way binding
               From component to Template, Template to Component
