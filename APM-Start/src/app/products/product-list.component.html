@@ -66,7 +66,11 @@
             <td>{{product.releaseDate}}</td>
             <!-- using pipe here -->
             <td>{{product.price | currency: "NGN":"symbol": "1.2-2"}}</td>
-            <td>{{product.starRating}}</td>
+            <!-- Nesting a component into another component -->
+            <!-- Data can be passed from parent to child -->
+            <!-- the child ppt receivng the data must be decorated with the @input decorator -->
+            <!-- using property binding, the data is passed, product.starRating is passed to rating which is a ppt of star component -->
+            <td><pm-stars [rating] = "product.starRating" (ratingClicked)='onRatingClicked($event)'></pm-stars></td>
           </tr>
 
 
