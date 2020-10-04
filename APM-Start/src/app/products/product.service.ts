@@ -30,6 +30,8 @@ export class ProductService {
   // the function that calls the subscription finishes and is only called after some time
   // ...since an Observable is an asynchronous function...
   // after piping, the subscription methods are then called
+
+  // TODO how to use generics to specify the return type
   getProduct(): Observable<IProduct[]>{
     return this.http.get<IProduct[]>(this.productUrl).pipe(
       tap(data => console.log('All ' + JSON.stringify(data))),

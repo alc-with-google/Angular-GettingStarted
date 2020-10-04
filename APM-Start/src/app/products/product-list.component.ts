@@ -68,7 +68,7 @@ export class ProductListComponent implements OnInit {
     // getProduct returns an observerable hence it needs to be subscribed to
     // the subscription SENDS the get request - that's all
     // and the function concludes
-    // when the the request is returned, three functions are available
+    // when the the request is returned, three functions are available to handle the emitted item
     // next, error and complete
     this.productService.getProduct().subscribe({
       next: products => {
