@@ -23,6 +23,7 @@ export class ProductListComponent implements OnInit {
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: Boolean = false;
+  errorMessage: string = '';
 
 
   // _listFilter: string = "cart;"
@@ -64,7 +65,17 @@ export class ProductListComponent implements OnInit {
 
   // a method that implements the onInit Lifecycle Interface
   ngOnInit() {
-    this.products = this.productService.getProduct();
-    this.filteredProduct = this.products;
+    // getProduct returns an observerable hence it needs to be subscribed to
+    // the subscription SENDS the get request - that's all
+    // and the function concludes
+    // when the the request is returned, three functions are available
+    // next, error and complete
+    this.productService.getProduct().subscribe({
+      next: products => {
+        this.products = products;
+        this.filteredProduct = this.products;
+      },
+      error: err => this.errorMessage = err,
+    });
   }
 }
