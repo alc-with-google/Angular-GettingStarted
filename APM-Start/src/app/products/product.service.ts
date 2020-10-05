@@ -32,6 +32,7 @@ export class ProductService {
   // after piping, the subscription methods are then called
 
   // TODO how to use generics to specify the return type
+  // to transform the raw response to the specified type
   getProduct(): Observable<IProduct[]>{
     return this.http.get<IProduct[]>(this.productUrl).pipe(
       tap(data => console.log('All ' + JSON.stringify(data))),

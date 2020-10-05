@@ -3,7 +3,8 @@ import { IProduct } from "../product";
 import { ProductService } from "./product.service"
 
 @Component({
-  selector: 'pm-products', // this means the component can be used a directive, <pm-products></pm-products> providing access to the html
+  // commented out to allow for routing
+  // selector: 'pm-products', // this means the component can be used a directive, <pm-products></pm-products> providing access to the html
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
@@ -35,7 +36,7 @@ export class ProductListComponent implements OnInit {
   get listFilter(): string {
     return this._listFilter;
   }
-  set listFilter(value: string): string {
+  set listFilter(value: string) {
     this._listFilter = value;
     this.filteredProduct = this.listFilter ? this.performFilter(this.listFilter) : this.products;
   }
