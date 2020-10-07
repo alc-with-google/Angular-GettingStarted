@@ -32,6 +32,7 @@ import { identifierModuleUrl } from '@angular/compiler';
           // ...for each route (RouterModule.forRoot)
           // ...order matters
     // Tie routes to action. 'RouterModule' gives us link to some Directives
+    // Wheredo we want the user to activate the route
         // Add the RouterLink as an attribute to a clickable element
         // Bind to a link parameters array
           // [RouterLInk], used as [RouterLink]="['/welcome']" returns the first match
